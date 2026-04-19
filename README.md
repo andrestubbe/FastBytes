@@ -1,4 +1,4 @@
-# FastBytes
+# FastBytes — High-performance byte operations for Java
 
 High-performance byte array operations for Java with SIMD acceleration.
 
