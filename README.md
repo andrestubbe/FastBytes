@@ -119,9 +119,11 @@ FastBytes Architecture
     └── Normal JNI for small operations
 ```
 
-## Build
+## Build from Source
 
-See [COMPILE.md](COMPILE.md) for build instructions.
+See [COMPILE.md](COMPILE.md) for detailed build instructions.
+
+---
 
 ## Requirements
 
