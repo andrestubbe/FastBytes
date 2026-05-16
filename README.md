@@ -1,4 +1,4 @@
-# FastBytes ⚡
+# FastBytes — High-performance SIMD-powered byte engine for Java
 
 **High-performance SIMD-powered byte manipulation engine for the JVM.**
 
