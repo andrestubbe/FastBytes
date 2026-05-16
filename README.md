@@ -8,13 +8,20 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![JitPack](https://jitpack.io/v/andrestubbe/FastBytes.svg)](https://jitpack.io/#andrestubbe/FastBytes)
 
-FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Java overhead, offering 2-50x speedups for bulk data operations.
+FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard Java APIs reach their physical limits.
+
+```java
+// Quick Start — SIMD Search
+byte[] data = ...; // 500MB buffer
+int index = FastBytes.indexOf(data, (byte)0x42); 
+```
 
 ## Table of Contents
 - [Key Features](#key-features)
 - [Performance](#performance)
+- [API Quick Reference](#api-quick-reference)
 - [Installation](#installation)
-- [Technical Examples](#technical-examples)
+- [Technical Examples & Hero Demos](#technical-examples--hero-demos)
 - [Documentation](#documentation)
 - [Platform Support](#platform-support)
 - [License](#license)
@@ -29,11 +36,11 @@ FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Ja
 
 ---
 
-## 📊 Performance (v0.1.0 Nitro Edition)
+## 📊 Performance (v0.1.0)
 
-Measured on **Surface Pro 8** (Intel Core i7-1185G7 @ 3.00GHz, **AVX-512BW** enabled).
+Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
-| Operation | Buffer Size | Java (Standard) | FastBytes (Nitro) | Speedup |
+| Operation | Buffer Size | Java (Standard) | FastBytes (v0.1.0) | Speedup |
 |-----------|-------------|-----------------|-------------------|---------|
 | **XOR**   | 4K Frame    | ~52 ms          | **~2 ms**         | **26x** |
 | **Search**| 500 MB      | ~215 ms         | **~30 ms**        | **7.2x**|
@@ -51,6 +58,19 @@ See the full **[ROADMAP.md](./ROADMAP.md)** for details.
 
 
 ---
+
+## API Quick Reference
+
+| Method | Description | Path |
+|--------|-------------|------|
+| `copy(...)` | High-speed memory migration (64-byte unrolled). | [Reference →](REFERENCE.md#copy) |
+| `indexOf(...)` | AVX-512 accelerated byte scanner. | [Reference →](REFERENCE.md#search) |
+| `xor(...)` | 128-byte vector XOR engine (Visual/Crypto). | [Reference →](REFERENCE.md#xor) |
+| `fill(...)` | Rapid buffer zeroing/initialization. | [Reference →](REFERENCE.md#fill) |
+| `hashXXH32(...)` | SIMD-ready xxHash implementation. | [Reference →](REFERENCE.md#hash) |
+
+> [!TIP]
+> See **[REFERENCE.md](REFERENCE.md)** for full JNI contracts and fallback rules.
 
 ## Installation
 
@@ -91,7 +111,13 @@ dependencies {
 }
 ```
 
-### Direct Download (No Build Tool)
+### Option 3: Modular Ecosystem (Recommended)
+FastBytes works best when combined with other **FastJava** accelerators:
+*   [**FastCore**](https://github.com/andrestubbe/FastCore) (Mandatory) — Native library loader.
+*   [**FastIO**](https://github.com/andrestubbe/FastIO) — High-performance file streaming.
+*   [**FastJSON**](https://github.com/andrestubbe/FastJSON) — SIMD-powered JSON parsing.
+
+### Option 4: Direct Download (No Build Tool)
 Download the latest JARs directly to add them to your classpath:
 
 1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases)** (The Core Library)
@@ -135,4 +161,7 @@ See the `examples/` directory for technical implementations and high-speed races
 MIT License — See [LICENSE](LICENSE) file for details.
 
 ---
+---
 **Part of the FastJava Ecosystem** — *Making the JVM faster.*
+
+Made with ⚡ by Andre Stubbe
