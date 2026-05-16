@@ -24,13 +24,31 @@ These demos showcase FastBytes in action. See `examples/Demo` for source.
 ## 🛠️ Quickstart
 
 ### Installation (JitPack)
-Add this to your `pom.xml`:
+Add the JitPack repository and both dependencies to your `pom.xml`:
+
 ```xml
-<dependency>
-    <groupId>io.github.andrestubbe</groupId>
-    <artifactId>fastbytes</artifactId>
-    <version>1.0.0</version>
-</dependency>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <!-- 1. FastBytes (SIMD Primitives) -->
+    <dependency>
+        <groupId>io.github.andrestubbe</groupId>
+        <artifactId>fastbytes</artifactId>
+        <version>v0.1.0</version>
+    </dependency>
+
+    <!-- 2. FastCore (Required Native Loader) -->
+    <dependency>
+        <groupId>com.github.andrestubbe</groupId>
+        <artifactId>fastcore</artifactId>
+        <version>v0.1.0</version>
+    </dependency>
+</dependencies>
 ```
 
 ### Basic Usage
@@ -50,7 +68,7 @@ FastBytes.xor(a, b, out);
 ## 📖 Documentation
 *   **[REFERENCE.md](REFERENCE.md)**: Full technical specification, CPU fallback rules, and JNI contracts.
 *   **[PHILOSOPHIE.md](philosophie.md)**: The "Native-First" philosophy behind the FastJava ecosystem.
-*   **[ROADMAP.md](ROADMAP.md)**: Upcoming features (AVX-512, NEON, Memory Pooling).
+*   **[CHANGELOG.md](CHANGELOG.md)**: Project history.
 
 ## 💻 Code Examples
 See the `examples/` directory for technical implementations:
