@@ -111,13 +111,7 @@ dependencies {
 }
 ```
 
-### Option 3: Modular Ecosystem (Recommended)
-FastBytes works best when combined with other **FastJava** accelerators:
-*   [**FastCore**](https://github.com/andrestubbe/FastCore) (Mandatory) — Native library loader.
-*   [**FastIO**](https://github.com/andrestubbe/FastIO) — High-performance file streaming.
-*   [**FastJSON**](https://github.com/andrestubbe/FastJSON) — SIMD-powered JSON parsing.
-
-### Option 4: Direct Download (No Build Tool)
+### Option 3: Direct Download (No Build Tool)
 Download the latest JARs directly to add them to your classpath:
 
 1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases)** (The Core Library)
@@ -161,7 +155,15 @@ See the `examples/` directory for technical implementations and high-speed races
 MIT License — See [LICENSE](LICENSE) file for details.
 
 ---
+
+## Modular Ecosystem
+FastBytes works best when combined with other **FastJava** accelerators:
+*   [**FastCore**](https://github.com/andrestubbe/FastCore) — Native library loader.
+*   [**FastIO**](https://github.com/andrestubbe/FastIO) — High-performance file streaming.
+*   [**FastJSON**](https://github.com/andrestubbe/FastJSON) — SIMD-powered JSON parsing.
+
 ---
+
 **Part of the FastJava Ecosystem** — *Making the JVM faster.*
 
 Made with ⚡ by Andre Stubbe
