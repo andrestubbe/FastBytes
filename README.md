@@ -68,7 +68,7 @@ dependencies {
 }
 ```
 
-### Option 3: Direct Download (No Build Tool)
+### Direct Download (No Build Tool)
 Download the latest JARs directly to add them to your classpath:
 
 1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases)** (The Core Library)
