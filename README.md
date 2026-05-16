@@ -63,6 +63,10 @@ dependencies {
 }
 ```
 
+### Direct Download
+You can also download the latest pre-compiled `.jar` directly from the [Releases](https://github.com/andrestubbe/FastBytes/releases) page. Ensure you have `FastCore` in your classpath for native loading.
+
+
 ---
 
 ## 📖 Documentation
