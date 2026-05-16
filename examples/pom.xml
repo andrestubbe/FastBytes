@@ -4,10 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>io.github.andrestubbe</groupId>
+    <groupId>com.github.andrestubbe</groupId>
     <artifactId>fastbytes-examples</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <version>v0.1.0</version>
     
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -24,32 +23,31 @@
     
     <dependencies>
         <dependency>
-            <groupId>io.github.andrestubbe</groupId>
+            <groupId>com.github.andrestubbe</groupId>
             <artifactId>fastcore</artifactId>
-            <version>1.0.0</version>
+            <version>v0.1.0</version>
         </dependency>
         
-        <!-- Local FastBytes Dependency -->
         <dependency>
-            <groupId>io.github.andrestubbe</groupId>
+            <groupId>com.github.andrestubbe</groupId>
             <artifactId>fastbytes</artifactId>
-            <version>1.0.0</version>
+            <version>v0.1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../target/fastbytes-1.0.0.jar</systemPath>
+            <systemPath>${project.basedir}/../target/fastbytes-v0.1.0.jar</systemPath>
         </dependency>
     </dependencies>
     
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <!-- Default to Demo, but can be overridden via -Dexec.mainClass -->
                     <mainClass>fastbytes.Demo</mainClass>
-                    <commandlineArgs>--enable-native-access=ALL-UNNAMED</commandlineArgs>
+                    <arguments>
+                        <argument>--enable-native-access=ALL-UNNAMED</argument>
+                    </arguments>
                 </configuration>
             </plugin>
         </plugins>

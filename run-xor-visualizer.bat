@@ -1,7 +1,8 @@
 @echo off
 echo ⚡ Building FastBytes...
-call mvn clean package -DskipTests
+call mvn -q clean package -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
+set MAVEN_OPTS=-Xmx4G
 echo 🚀 Running XOR Visualizer...
 cd examples
 call mvn compile exec:java -Dexec.mainClass=fastbytes.Demo3

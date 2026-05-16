@@ -1,6 +1,6 @@
 @echo off
 echo ⚡ Building FastBytes...
-call mvn clean package -DskipTests
+call mvn -q clean package -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
 echo 🚀 Running Technical Hash Example...
 cd examples
