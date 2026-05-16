@@ -1,88 +1,63 @@
 # FastBytes Reference
 
 ## 1. CPU Feature Model
-*   **SSE4.2** — detected via CPUID (ECX bit 20). Enables 16-byte vector ops.
-*   **AVX2** — detected via CPUID leaf 7 (EBX bit 5). Enables 32-byte vector ops.
-*   **AVX-512** — detected via CPUID leaf 7 (EBX bits 16, 17, 30). *Not yet used.*
-*   **Fallback rule**: AVX2 → SSE4.2 → scalar.
+*   **AVX-512BW** — detected via CPUID leaf 7. Primary path for **XOR** and **Search** (64-byte vectors).
+*   **AVX2** — detected via CPUID leaf 7 (EBX bit 5). Enables 32-byte vector ops with 64-byte unrolling.
+*   **SSE4.2** — detected via CPUID (ECX bit 20). 16-byte fallback.
+*   **Fallback rule**: AVX-512 → AVX2 → SSE4.2 → scalar.
 
 ## 2. Guarantees
-*   All operations are safe on **unaligned memory**.
-*   All static methods are **thread-safe**.
-*   Instance methods require external synchronization.
-*   JNI always copies back modified arrays unless explicitly marked `JNI_ABORT`.
+*   **Zero-Copy**: All operations use `GetPrimitiveArrayCritical` for direct memory access.
+*   **Unaligned Access**: Safe on all byte boundaries (uses `loadu`/`storeu`).
+*   **Thread-Safety**: All static native methods are thread-safe.
+*   **Deterministic Latency**: Hand-tuned intrinsics eliminate JIT-related variance.
 
 ## 3. Supported Operations
 
 ### Copy
 `copy(byte[] src, int srcPos, byte[] dest, int destPos, int length)`
-*   **AVX2**: 32-byte loads/stores.
-*   **SSE4.2**: 16-byte loads/stores.
-*   **Scalar tail** for remaining bytes.
+*   **Pro**: 64-byte unrolled loop with 256B software prefetching.
+*   **Legacy**: Standard 32-byte AVX2 loop.
 
 ### Fill
 `fill(byte[] array, byte value)`
-*   Broadcast via `_mm256_set1_epi8` or `_mm_set1_epi8`.
-*   Scalar tail.
+*   **Pro**: 64-byte unrolled stores.
+*   **Legacy**: Standard 32-byte stores.
 
-### Compare / Equals
-`compare(byte[] a, byte[] b)` / `equals(byte[] a, byte[] b)`
-*   Vector compare, early exit on mismatch.
+### Compare
+`compare(byte[] a, byte[] b)`
+*   **Optimized**: 32-byte vector comparison with hardware-accelerated mismatch detection via `_BitScanForward`.
 
 ### Search
 `indexOf(byte[] array, byte value)`
-*   Vector compare → `movemask` → `ctz`.
-*   Scalar fallback.
-
-### Count
-`count(byte[] array, byte value)`
-*   AVX2 horizontal sum via `_mm256_sad_epu8`.
-
-### Hash
-`hashFNV1a(byte[] data)` — scalar FNV-1a.
-`hashXXH32(byte[] data, int seed)` — simplified scalar xxHash32.
+*   **Pro**: 64-byte unrolled scanner with AVX-512 support. Uses `movemask` and bit-scanning for index recovery.
+*   **Legacy**: Standard 32-byte scanner.
 
 ### XOR
 `xor(byte[] a, byte[] b, byte[] out)`
-*   Vector XOR, scalar tail.
+*   **Extreme**: AVX-512BW path processing **128 bytes per iteration** (unrolled).
+*   **Fallback**: AVX2 64-byte unrolled.
 
-### Reverse / Swap
-`reverse(byte[] array)` — scalar swap.
-`swapBytes(byte[] array, int groupSize)` — scalar group reversal.
+### Hash
+`hashXXH32(byte[] data, int seed)`
+*   High-performance scalar implementation of xxHash32.
 
-## 4. JNI Contracts
-*   `GetByteArrayElements` is used for all array access.
-*   Inputs are never modified unless explicitly documented.
-*   Outputs are written back with mode 0.
-*   Critical sections (`toArrayFast`) must not block.
+### Reverse
+`reverse(byte[] array)`
+*   In-place scalar reversal.
 
-## 5. Native Buffer Semantics
-*   `nativeCreate(capacity)` allocates a growable buffer.
-*   `nativeFromBytes(data)` copies Java bytes into native memory.
-*   `resize(newCapacity)` only grows.
-*   `append(data)` auto-grows.
-*   `toArray()` returns a fresh Java copy.
+## 4. JNI & Memory Contracts
+*   **Direct Memory Pinning**: No implicit copies are made by the JNI bridge.
+*   **Short Duration**: Native calls are optimized for sub-millisecond execution to minimize GC impact.
+*   **No Allocation**: All operations work on pre-allocated Java arrays or buffers.
 
-## 6. Error Handling
-*   Null arrays → no-op.
-*   Negative indices/lengths → Java throws before JNI.
-*   After `close()`, all native calls throw `IllegalStateException`.
-
-## 7. Fallback Matrix
-
-| Feature | AVX2 | SSE4.2 | Scalar |
+## 5. Platform Support
+| Feature | AVX-512 | AVX2 | SSE4.2 |
 | :--- | :---: | :---: | :---: |
-| **copy** | ✓ | ✓ | ✓ |
-| **fill** | ✓ | ✓ | ✓ |
-| **compare** | ✓ | partial | ✓ |
-| **indexOf** | ✓ | ✓ | ✓ |
-| **count** | ✓ | – | ✓ |
-| **xor** | ✓ | ✓ | ✓ |
-
-## 8. Stability
-*   All listed operations are stable.
-*   Hash implementations may be replaced with SIMD versions in the future.
-*   AVX-512 and NEON paths are planned but not guaranteed yet.
+| **XOR** | ✓ | ✓ | ✓ |
+| **Search** | ✓ | ✓ | ✓ |
+| **Copy** | – | ✓ | ✓ |
+| **Compare** | – | ✓ | ✓ |
 
 ---
 **Part of the FastJava Ecosystem** — *Making the JVM faster.*

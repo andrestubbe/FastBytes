@@ -12,8 +12,8 @@ FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Ja
 
 ## Table of Contents
 - [Key Features](#key-features)
+- [Performance](#performance)
 - [Installation](#installation)
-- [YouTube Hero Demos](#youtube-hero-demos)
 - [Technical Examples](#technical-examples)
 - [Documentation](#documentation)
 - [Platform Support](#platform-support)
@@ -40,15 +40,14 @@ Measured on **Surface Pro 8** (Intel Core i7-1185G7 @ 3.00GHz, **AVX-512BW** ena
 | **Copy**  | 1 GB        | ~170 ms         | **~118 ms**       | **1.4x**|
 | **Fill**  | 1 GB        | ~110 ms         | **~85 ms**        | **1.3x**|
 
-> [!IMPORTANT]
-> **FastBytes Philosophy**:
-> *"Keine Kopien. Niemals. Kritischer JNI-Pfad. AVX-512, wenn da."*
-> We don't optimize Java code; we bypass it to reach the physical limits of the hardware.
+> Read the full manifest in **[PHILOSOPHIE.md](./PHILOSOPHIE.md)**.
 
-## 🗺️ Roadmap (v0.1.1+)
-- [ ] **Copy**: Implement Kernel-level Fastpaths (`CopyFile2` / `sendfile`).
-- [ ] **Fill**: Implement 3-Way strategy (rep stosq + AVX2 + Streaming).
-- [ ] **Native**: ARM64 / Apple Silicon (NEON) optimization.
+## 🗺️ Next Steps
+- [ ] **Kernel Fastpaths**: DMA-based bulk copying (`CopyFile2`).
+- [ ] **3-Way Fill**: Hardware-optimized memory zeroing.
+- [ ] **Apple Silicon**: Native NEON port for ARM64.
+
+See the full **[ROADMAP.md](./ROADMAP.md)** for details.
 
 
 ---
@@ -103,28 +102,22 @@ Download the latest JARs directly to add them to your classpath:
 
 ---
 
-## YouTube Hero Demos
-These demos showcase FastBytes in action. See `examples/Demo` for source.
+## Technical Examples & Hero Demos
+See the `examples/` directory for technical implementations and high-speed races:
 
-1.  **“Java vs FastBytes: 1GB Copy Race”** — SIMD vs `System.arraycopy` throughput.
-2.  **“SIMD Search vs Java Loop”** — Finding bytes in 500MB with a 40x speed gap.
-3.  **“Real-Time XOR Visualizer”** — XORing 4K image frames at ultra-high FPS.
-
----
-
-## Technical Examples
-See the `examples/` directory for technical implementations:
--   [CopyDemo.java](examples/src/main/java/fastbytes/CopyDemo.java)
--   [FillDemo.java](examples/src/main/java/fastbytes/FillDemo.java)
--   [SearchDemo.java](examples/src/main/java/fastbytes/SearchDemo.java)
--   [XorImageDemo.java](examples/src/main/java/fastbytes/XorImageDemo.java)
--   [HashDemo.java](examples/src/main/java/fastbytes/HashDemo.java)
+| Case | Java Example | Performance Race / Demo |
+|------|--------------|-------------------------|
+| **XOR** | [XorImageDemo.java](examples/src/main/java/fastbytes/XorImageDemo.java) | [“Real-Time XOR Visualizer”](https://youtube.com) (4K @ 666 FPS) |
+| **Search** | [SearchDemo.java](examples/src/main/java/fastbytes/SearchDemo.java) | [“SIMD Search vs Java Loop”](https://youtube.com) (7.2x speedup) |
+| **Copy** | [CopyDemo.java](examples/src/main/java/fastbytes/CopyDemo.java) | [“1GB Copy Race”](https://youtube.com) (1.4x speedup) |
+| **Fill** | [FillDemo.java](examples/src/main/java/fastbytes/FillDemo.java) | — |
+| **Hash** | [HashDemo.java](examples/src/main/java/fastbytes/HashDemo.java) | — |
 
 ---
 
 ## Documentation
 *   **[REFERENCE.md](REFERENCE.md)**: Full technical specification, CPU fallback rules, and JNI contracts.
-*   **[PHILOSOPHIE.md](philosophie.md)**: The "Native-First" philosophy behind the FastJava ecosystem.
+*   **[PHILOSOPHIE.md](PHILOSOPHIE.md)**: The "Native-First" philosophy behind the FastJava ecosystem.
 *   **[CHANGELOG.md](CHANGELOG.md)**: Project history.
 
 ---
