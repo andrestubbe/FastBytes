@@ -7,7 +7,7 @@
 
     <groupId>io.github.andrestubbe</groupId>
     <artifactId>fastbytes</artifactId>
-    <version>1.0.0</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>FastBytes</name>
@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.andrestubbe</groupId>
+            <groupId>com.github.andrestubbe</groupId>
             <artifactId>fastcore</artifactId>
-            <version>1.0.0</version>
+            <version>0.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
