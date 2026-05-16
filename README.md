@@ -107,11 +107,11 @@ See the `examples/` directory for technical implementations and high-speed races
 
 | Case | Java Example | Performance Race / Demo |
 |------|--------------|-------------------------|
-| **XOR** | [XorImageDemo.java](examples/src/main/java/fastbytes/XorImageDemo.java) | [“Real-Time XOR Visualizer”](https://youtube.com) (4K @ 666 FPS) |
-| **Search** | [SearchDemo.java](examples/src/main/java/fastbytes/SearchDemo.java) | [“SIMD Search vs Java Loop”](https://youtube.com) (7.2x speedup) |
-| **Copy** | [CopyDemo.java](examples/src/main/java/fastbytes/CopyDemo.java) | [“1GB Copy Race”](https://youtube.com) (1.4x speedup) |
-| **Fill** | [FillDemo.java](examples/src/main/java/fastbytes/FillDemo.java) | — |
-| **Hash** | [HashDemo.java](examples/src/main/java/fastbytes/HashDemo.java) | — |
+| **XOR** | [XorRace.java](examples/src/main/java/fastbytes/XorRace.java) | [“Real-Time XOR Visualizer”](https://youtube.com) (4K @ 666 FPS) |
+| **Search** | [SearchRace.java](examples/src/main/java/fastbytes/SearchRace.java) | [“SIMD Search vs Java Loop”](https://youtube.com) (7.2x speedup) |
+| **Copy** | [CopyRace.java](examples/src/main/java/fastbytes/CopyRace.java) | [“1GB Copy Race”](https://youtube.com) (1.4x speedup) |
+| **Fill** | [FillRace.java](examples/src/main/java/fastbytes/FillRace.java) | — |
+| **Hash** | [HashRace.java](examples/src/main/java/fastbytes/HashRace.java) | — |
 
 ---
 
