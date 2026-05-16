@@ -1,14 +1,17 @@
 # FastBytes ⚡
 
-**FastBytes** is a high-performance SIMD-powered byte manipulation engine for the JVM. 
-It provides native-first primitives (AVX2/SSE4.2) that bypass standard Java overhead, offering 2-50x speedups for bulk data operations.
+**High-performance SIMD-powered byte manipulation engine for the JVM.**
 
-## 🚀 Features
--   **SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
--   **Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
--   **Blazing Fill**: Fills gigabytes of memory at hardware-limit speeds.
--   **Native XOR**: Optimized for cryptographic and visual processing.
--   **Fast Hashing**: SIMD-accelerated FNV-1a and xxHash32.
+[![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastBytes/maven.yml?branch=main)](https://github.com/andrestubbe/FastBytes/actions)
+[![JitPack](https://jitpack.io/v/andrestubbe/FastBytes.svg)](https://jitpack.io/#andrestubbe/FastBytes)
+
+FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Java overhead, offering 2-50x speedups for bulk data operations. It is designed for AI agents, high-frequency data processing, and performance-critical systems.
+
+## 🚀 Key Features
+-   **⚡ SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
+-   **🔍 Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
+-   **🎨 Native XOR**: Optimized for cryptographic and visual processing.
+-   **📦 Zero Dependencies**: Purely native acceleration via JNI.
 
 ---
 
@@ -21,11 +24,11 @@ These demos showcase FastBytes in action. See `examples/Demo` for source.
 
 ---
 
-## 🛠️ Quickstart
+## 🛠️ Installation
 
-### Installation (JitPack)
-Add the JitPack repository and both dependencies to your `pom.xml`:
+FastJava modules require **two** dependencies: the module itself, and `FastCore` (which handles the native library extraction).
 
+### Maven (JitPack)
 ```xml
 <repositories>
     <repository>
@@ -35,14 +38,11 @@ Add the JitPack repository and both dependencies to your `pom.xml`:
 </repositories>
 
 <dependencies>
-    <!-- 1. FastBytes (SIMD Primitives) -->
     <dependency>
-        <groupId>io.github.andrestubbe</groupId>
+        <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastbytes</artifactId>
         <version>v0.1.0</version>
     </dependency>
-
-    <!-- 2. FastCore (Required Native Loader) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastcore</artifactId>
@@ -51,16 +51,16 @@ Add the JitPack repository and both dependencies to your `pom.xml`:
 </dependencies>
 ```
 
-### Basic Usage
-```java
-// Fast SIMD Copy
-FastBytes.copy(src, 0, dest, 0, length);
+### Gradle (JitPack)
+```gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
-// High-Speed Search
-int index = FastBytes.indexOf(data, (byte) 0xEE);
-
-// SIMD XOR
-FastBytes.xor(a, b, out);
+dependencies {
+    implementation 'com.github.andrestubbe:fastbytes:v0.1.0'
+    implementation 'com.github.andrestubbe:fastcore:v0.1.0'
+}
 ```
 
 ---
@@ -70,7 +70,7 @@ FastBytes.xor(a, b, out);
 *   **[PHILOSOPHIE.md](philosophie.md)**: The "Native-First" philosophy behind the FastJava ecosystem.
 *   **[CHANGELOG.md](CHANGELOG.md)**: Project history.
 
-## 💻 Code Examples
+## 💻 Technical Examples
 See the `examples/` directory for technical implementations:
 -   [CopyDemo.java](examples/src/main/java/fastbytes/CopyDemo.java)
 -   [FillDemo.java](examples/src/main/java/fastbytes/FillDemo.java)
