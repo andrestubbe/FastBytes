@@ -13,10 +13,9 @@ public class Demo2 {
         int size = 500 * 1024 * 1024; // 500MB
         System.out.println("=== SIMD Search vs Java Loop (500MB) ===");
         byte[] data = new byte[size];
-        new Random().nextBytes(data);
-        
         byte target = (byte) 0xEE;
-        data[size - 100] = target; // Put target near the very end to maximize work
+        java.util.Arrays.fill(data, (byte) 0); // Clear array
+        data[size - 100] = target; // Put target near the very end
 
         System.out.println("Searching for 0xEE in 500MB buffer...");
 

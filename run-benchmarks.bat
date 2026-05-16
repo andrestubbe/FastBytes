@@ -1,12 +1,12 @@
 @echo off
-echo ⚡ Building FastBytes...
-call mvn -q clean package -DskipTests
+chcp 65001 > nul
+echo ⚡ Installing FastBytes...
+call mvn -q clean install -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
-echo ⚡ Building Benchmarks...
-cd benchmarks
+cd examples
+echo 🚀 Preparing dependencies...
 call mvn -q clean package -DskipTests
-if %ERRORLEVEL% NEQ 0 ( cd .. & pause & exit /b )
 echo 🚀 Running JMH Benchmarks...
-java -jar target/benchmarks.jar
+java -Xmx4G --enable-native-access=ALL-UNNAMED -cp "target/classes;target/lib/*;../target/fastbytes-v0.1.0.jar" org.openjdk.jmh.Main
 cd ..
 pause

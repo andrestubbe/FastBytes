@@ -557,30 +557,29 @@ JNIEXPORT void JNICALL Java_fastbytes_FastBytes_copy(JNIEnv* env, jclass,
     
     if (!src || !dest || length <= 0) return;
     
-    jbyte* srcBytes = env->GetByteArrayElements(src, nullptr);
-    jbyte* destBytes = env->GetByteArrayElements(dest, nullptr);
+    void* srcBytes = env->GetPrimitiveArrayCritical(src, nullptr);
+    void* destBytes = env->GetPrimitiveArrayCritical(dest, nullptr);
     
-    copyFast(reinterpret_cast<const uint8_t*>(srcBytes + srcPos),
-             reinterpret_cast<uint8_t*>(destBytes + destPos),
+    copyFast(reinterpret_cast<const uint8_t*>(srcBytes) + srcPos,
+             reinterpret_cast<uint8_t*>(destBytes) + destPos,
              length);
     
-    env->ReleaseByteArrayElements(src, srcBytes, JNI_ABORT);
-    env->ReleaseByteArrayElements(dest, destBytes, 0); // 0 = copy back
+    env->ReleasePrimitiveArrayCritical(dest, destBytes, 0);
+    env->ReleasePrimitiveArrayCritical(src, srcBytes, JNI_ABORT);
 }
 
-JNIEXPORT void JNICALL Java_fastbytes_FastBytes_fill__3BB(JNIEnv* env, jclass, 
-    jbyteArray array, jbyte value) {
+JNIEXPORT void JNICALL Java_fastbytes_FastBytes_fill(JNIEnv* env, jclass, 
+    jbyteArray array, jint fromIndex, jint toIndex, jbyte value) {
     
-    if (!array) return;
+    if (!array || fromIndex < 0 || toIndex < fromIndex) return;
     
-    jsize len = env->GetArrayLength(array);
-    jbyte* bytes = env->GetByteArrayElements(array, nullptr);
+    void* bytes = env->GetPrimitiveArrayCritical(array, nullptr);
     
-    fillFast(reinterpret_cast<uint8_t*>(bytes), 
+    fillFast(reinterpret_cast<uint8_t*>(bytes) + fromIndex, 
              static_cast<uint8_t>(value), 
-             len);
+             toIndex - fromIndex);
     
-    env->ReleaseByteArrayElements(array, bytes, 0);
+    env->ReleasePrimitiveArrayCritical(array, bytes, 0);
 }
 
 JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_indexOf(JNIEnv* env, jclass,
@@ -591,13 +590,13 @@ JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_indexOf(JNIEnv* env, jclass,
     jsize len = env->GetArrayLength(array);
     if (fromIndex >= len) return -1;
     
-    jbyte* bytes = env->GetByteArrayElements(array, nullptr);
+    void* bytes = env->GetPrimitiveArrayCritical(array, nullptr);
     
-    int result = indexOfFast(reinterpret_cast<const uint8_t*>(bytes + fromIndex),
+    int result = indexOfFast(reinterpret_cast<const uint8_t*>(bytes) + fromIndex,
                              len - fromIndex,
                              static_cast<uint8_t>(value));
     
-    env->ReleaseByteArrayElements(array, bytes, JNI_ABORT);
+    env->ReleasePrimitiveArrayCritical(array, bytes, JNI_ABORT);
     
     return (result >= 0) ? (result + fromIndex) : -1;
 }
@@ -606,11 +605,11 @@ JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_hashFNV1a(JNIEnv* env, jclass, j
     if (!data) return 0;
     
     jsize len = env->GetArrayLength(data);
-    jbyte* bytes = env->GetByteArrayElements(data, nullptr);
+    void* bytes = env->GetPrimitiveArrayCritical(data, nullptr);
     
     uint32_t hash = hashFNV1a(reinterpret_cast<const uint8_t*>(bytes), len);
     
-    env->ReleaseByteArrayElements(data, bytes, JNI_ABORT);
+    env->ReleasePrimitiveArrayCritical(data, bytes, JNI_ABORT);
     return static_cast<jint>(hash);
 }
 
@@ -622,18 +621,35 @@ JNIEXPORT void JNICALL Java_fastbytes_FastBytes_xor(JNIEnv* env, jclass,
     jsize len = env->GetArrayLength(a);
     if (env->GetArrayLength(b) != len || env->GetArrayLength(out) != len) return;
     
-    jbyte* aBytes = env->GetByteArrayElements(a, nullptr);
-    jbyte* bBytes = env->GetByteArrayElements(b, nullptr);
-    jbyte* outBytes = env->GetByteArrayElements(out, nullptr);
+    void* aBytes = env->GetPrimitiveArrayCritical(a, nullptr);
+    void* bBytes = env->GetPrimitiveArrayCritical(b, nullptr);
+    void* outBytes = env->GetPrimitiveArrayCritical(out, nullptr);
     
     xorFast(reinterpret_cast<const uint8_t*>(aBytes),
             reinterpret_cast<const uint8_t*>(bBytes),
             reinterpret_cast<uint8_t*>(outBytes),
             len);
     
-    env->ReleaseByteArrayElements(a, aBytes, JNI_ABORT);
-    env->ReleaseByteArrayElements(b, bBytes, JNI_ABORT);
-    env->ReleaseByteArrayElements(out, outBytes, 0);
+    env->ReleasePrimitiveArrayCritical(out, outBytes, 0);
+    env->ReleasePrimitiveArrayCritical(b, bBytes, JNI_ABORT);
+    env->ReleasePrimitiveArrayCritical(a, aBytes, JNI_ABORT);
+}
+
+JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_compare(JNIEnv* env, jclass, jbyteArray a, jbyteArray b) {
+    if (!a || !b) return 0;
+    jsize len = env->GetArrayLength(a);
+    if (env->GetArrayLength(b) != len) return (len < env->GetArrayLength(b)) ? -1 : 1;
+    
+    void* aBytes = env->GetPrimitiveArrayCritical(a, nullptr);
+    void* bBytes = env->GetPrimitiveArrayCritical(b, nullptr);
+    
+    int res = compareFast(reinterpret_cast<const uint8_t*>(aBytes), 
+                          reinterpret_cast<const uint8_t*>(bBytes), 
+                          len);
+                          
+    env->ReleasePrimitiveArrayCritical(b, bBytes, JNI_ABORT);
+    env->ReleasePrimitiveArrayCritical(a, aBytes, JNI_ABORT);
+    return res;
 }
 
 } // extern "C"

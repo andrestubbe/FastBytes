@@ -1,9 +1,11 @@
-@echo off
+﻿@echo off
+chcp 65001 > nul
 echo ⚡ Building FastBytes...
 call mvn -q clean package -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
-echo 🚀 Running Technical Fill Example...
+set MAVEN_OPTS=-Xmx4G
+echo 🚀 Running fill example...
 cd examples
-call mvn compile exec:java -Dexec.mainClass=fastbytes.FillDemo
+call mvn -q compile exec:java -Dexec.mainClass=fastbytes.FillDemo
 cd ..
 pause

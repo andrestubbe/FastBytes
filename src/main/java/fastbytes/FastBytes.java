@@ -114,63 +114,26 @@ public class FastBytes implements AutoCloseable {
      * @since 1.0.0
      * @see java.util.Arrays#fill(byte[], byte)
      */
-    public static native void fill(byte[] array, byte value);
-    
-    /**
-     * SIMD-accelerated fill with range.
-     * 
-     * @param array array to fill
-     * @param fromIndex start index (inclusive)
-     * @param toIndex end index (exclusive)
-     * @param value byte value to fill with
-     */
-    public static native void fill(byte[] array, int fromIndex, int toIndex, byte value);
-    
-    /**
-     * SIMD-accelerated array comparison.
-     * 4-8x faster than Arrays.compare for large arrays.
-     * 
-     * @param a first array
-     * @param b second array
-     * @return negative if a<b, zero if equal, positive if a>b
-     */
     public static native int compare(byte[] a, byte[] b);
     
-    /**
-     * SIMD-accelerated equals check.
-     * Early exit on first mismatch.
-     * 
-     * @param a first array
-     * @param b second array
-     * @return true if arrays are equal
-     */
-    public static native boolean equals(byte[] a, byte[] b);
+    public static boolean equals(byte[] a, byte[] b) {
+        if (a == b) return true;
+        if (a == null || b == null) return false;
+        if (a.length != b.length) return false;
+        return compare(a, b) == 0;
+    }
     
-    /**
-     * Find first occurrence of a byte value.
-     * 
-     * <p>Uses SIMD vector comparison to search 32 bytes (AVX2) or 16 bytes
-     * (SSE4.2) per iteration. Early termination on match.
-     * 
-     * <p><b>Performance:</b> 10-50x faster than manual for-loop for large arrays.
-     * 
-     * @param array array to search (must be non-null)
-     * @param value byte to find
-     * @return index of first occurrence, or -1 if not found
-     * @throws NullPointerException if array is null
-     * @since 1.0.0
-     */
-    public static native int indexOf(byte[] array, byte value);
+    public static int indexOf(byte[] array, byte value) {
+        return indexOf(array, value, 0);
+    }
     
-    /**
-     * Find first occurrence starting from index.
-     * 
-     * @param array array to search
-     * @param value byte to find
-     * @param fromIndex starting position
-     * @return index of first occurrence, or -1 if not found
-     */
     public static native int indexOf(byte[] array, byte value, int fromIndex);
+
+    public static void fill(byte[] array, byte value) {
+        fill(array, 0, array.length, value);
+    }
+    
+    public static native void fill(byte[] array, int fromIndex, int toIndex, byte value);
     
     /**
      * Find last occurrence of a byte value.
