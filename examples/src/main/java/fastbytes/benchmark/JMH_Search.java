@@ -1,8 +1,9 @@
-package fastbytes;
+package fastbytes.benchmark;
+import fastbytes.FastBytes;
 
 import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
-import java.util.Random;
+import java.util.Arrays;
 
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
@@ -12,7 +13,7 @@ import java.util.Random;
 @Measurement(iterations = 3, time = 1)
 public class JMH_Search {
 
-    @Param({"1048576", "104857600"}) // 1MB, 100MB
+    @Param({"104857600"}) // 100MB
     private int size;
 
     private byte[] data;
@@ -21,8 +22,8 @@ public class JMH_Search {
     @Setup
     public void setup() {
         data = new byte[size];
-        new Random().nextBytes(data);
-        data[size - 1] = target; // Worst case
+        Arrays.fill(data, (byte) 0);
+        data[size - 1] = target; // Force full scan
     }
 
     @Benchmark

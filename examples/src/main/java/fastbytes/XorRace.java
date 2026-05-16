@@ -8,7 +8,7 @@ import java.util.Random;
  * Simulates a high-frame-rate glitch-art visualizer
  * using SIMD-accelerated XOR operations on 4K frames.
  */
-public class Demo3 {
+public class XorRace {
     public static void main(String[] args) {
         int size = 1920 * 1080 * 4; // 4K RGBA frame (~8MB)
         System.out.println("=== Real-Time XOR Visualizer ===");

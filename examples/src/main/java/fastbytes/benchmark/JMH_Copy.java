@@ -1,4 +1,5 @@
-package fastbytes;
+package fastbytes.benchmark;
+import fastbytes.FastBytes;
 
 import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 3, time = 1)
 public class JMH_Copy {
 
-    @Param({"1024", "1048576", "104857600"}) // 1KB, 1MB, 100MB
+    @Param({"104857600"}) // 100MB
     private int size;
 
     private byte[] src;

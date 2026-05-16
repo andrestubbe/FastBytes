@@ -1,4 +1,5 @@
-package fastbytes;
+package fastbytes.benchmark;
+import fastbytes.FastBytes;
 
 import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;

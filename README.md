@@ -29,16 +29,19 @@ FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Ja
 
 ---
 
-## Performance
-FastBytes provides hardware-limit throughput for bulk data operations:
+## 📊 Performance (Surface Pro 8 Edition)
 
-| Operation | Standard Java | FastBytes SIMD | Speedup |
-|-----------|---------------|----------------|---------|
-| 1GB Copy  | ~280 ms       | ~65 ms         | **4.3x** |
-| 500MB Search | ~120 ms    | ~3 ms          | **40x**  |
-| 4K XOR Frame | ~5.2 ms    | ~0.15 ms       | **34x**  |
+Measured on **Intel Core i7-1185G7 @ 3.00GHz** (AVX2 enabled).
 
-*Note: Benchmarks performed on AVX2-capable hardware (Intel i7/AMD Ryzen).*
+| Operation | Buffer Size | Java (Standard) | FastBytes (SIMD) | Speedup |
+|-----------|-------------|-----------------|------------------|---------|
+| **Search**| 100 MB      | 53 ops/s        | **147 ops/s**    | **2.8x**|
+| **XOR**   | 4K Frame    | ~200 FPS        | **772 FPS**      | **3.8x**|
+| **Copy**  | 1 GB        | 4.02 GB/s       | **5.15 GB/s**    | **1.3x**|
+| **Fill**  | 1 GB        | 2.80 GB/s       | **3.68 GB/s**    | **1.3x**|
+
+> [!NOTE]
+> For tiny copies (< 1KB), `System.arraycopy` is still recommended due to JNI overhead. FastBytes shines on large buffers (MB/GB) and complex SIMD operations (Search, XOR).
 
 
 ---
