@@ -110,8 +110,8 @@ See the `examples/` directory for technical implementations and high-speed races
 | **XOR** | [XorRace.java](examples/src/main/java/fastbytes/XorRace.java) | [“Real-Time XOR Visualizer”](https://youtube.com) (4K @ 666 FPS) | [JMH_Xor.java](examples/src/main/java/fastbytes/benchmark/JMH_Xor.java) |
 | **Search** | [SearchRace.java](examples/src/main/java/fastbytes/SearchRace.java) | [“SIMD Search vs Java Loop”](https://youtube.com) (7.2x speedup) | [JMH_Search.java](examples/src/main/java/fastbytes/benchmark/JMH_Search.java) |
 | **Copy** | [CopyRace.java](examples/src/main/java/fastbytes/CopyRace.java) | [“1GB Copy Race”](https://youtube.com) (1.4x speedup) | [JMH_Copy.java](examples/src/main/java/fastbytes/benchmark/JMH_Copy.java) |
-| **Fill** | [FillRace.java](examples/src/main/java/fastbytes/FillRace.java) | — | — |
-| **Hash** | [HashRace.java](examples/src/main/java/fastbytes/HashRace.java) | — | — |
+| **Fill** | [FillRace.java](examples/src/main/java/fastbytes/FillRace.java) | [“1GB Zero-Fill Race”](https://youtube.com) (1.3x speedup) | [JMH_Fill.java](examples/src/main/java/fastbytes/benchmark/JMH_Fill.java) |
+| **Hash** | [HashRace.java](examples/src/main/java/fastbytes/HashRace.java) | [“100MB xxHash Battle”](https://youtube.com) (xxHash32 Speed) | [JMH_Hash.java](examples/src/main/java/fastbytes/benchmark/JMH_Hash.java) |
 
 ---
 
