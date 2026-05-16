@@ -1,11 +1,12 @@
-﻿@echo off
+@echo off
 chcp 65001 > nul
-echo ⚡ Building FastBytes...
-call mvn -q clean package -DskipTests
+echo ⚡ Installing FastBytes...
+call mvn -q clean install -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
-set MAVEN_OPTS=-Xmx4G
-echo 🚀 Running xor example...
 cd examples
-call mvn -q compile exec:java -Dexec.mainClass=fastbytes.XorImageDemo
+echo 🚀 Preparing dependencies...
+call mvn -q clean package -DskipTests
+echo 🚀 Running XOR Example...
+java -Xmx4G --enable-native-access=ALL-UNNAMED -cp "target/classes;target/lib/*;../target/fastbytes-v0.1.0.jar" fastbytes.XorImageDemo
 cd ..
 pause

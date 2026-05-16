@@ -613,6 +613,18 @@ JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_hashFNV1a(JNIEnv* env, jclass, j
     return static_cast<jint>(hash);
 }
 
+JNIEXPORT jint JNICALL Java_fastbytes_FastBytes_hashXXH32(JNIEnv* env, jclass, jbyteArray data, jint seed) {
+    if (!data) return 0;
+    
+    jsize len = env->GetArrayLength(data);
+    void* bytes = env->GetPrimitiveArrayCritical(data, nullptr);
+    
+    uint32_t hash = hashXXH32(reinterpret_cast<const uint8_t*>(bytes), len, static_cast<uint32_t>(seed));
+    
+    env->ReleasePrimitiveArrayCritical(data, bytes, JNI_ABORT);
+    return static_cast<jint>(hash);
+}
+
 JNIEXPORT void JNICALL Java_fastbytes_FastBytes_xor(JNIEnv* env, jclass,
     jbyteArray a, jbyteArray b, jbyteArray out) {
     

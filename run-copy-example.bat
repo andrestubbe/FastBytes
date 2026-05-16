@@ -1,11 +1,12 @@
-﻿@echo off
+@echo off
 chcp 65001 > nul
-echo ⚡ Building FastBytes...
-call mvn -q clean package -DskipTests
+echo ⚡ Installing FastBytes...
+call mvn -q clean install -DskipTests
 if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
-set MAVEN_OPTS=-Xmx4G
-echo 🚀 Running copy example...
 cd examples
-call mvn -q compile exec:java -Dexec.mainClass=fastbytes.CopyDemo
+echo 🚀 Preparing dependencies...
+call mvn -q clean package -DskipTests
+echo 🚀 Running Copy Example...
+java -Xmx4G --enable-native-access=ALL-UNNAMED -cp "target/classes;target/lib/*;../target/fastbytes-v0.1.0.jar" fastbytes.CopyDemo
 cd ..
 pause
