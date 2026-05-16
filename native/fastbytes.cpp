@@ -18,8 +18,14 @@
 // CPU detection
 #ifdef _MSC_VER
 #include <intrin.h>
+static inline int ctz(unsigned int mask) {
+    unsigned long index;
+    if (_BitScanForward(&index, mask)) return index;
+    return 32;
+}
 #else
 #include <cpuid.h>
+#define ctz(mask) __builtin_ctz(mask)
 #endif
 
 namespace fastbytes {
@@ -340,7 +346,7 @@ int indexOfFast(const uint8_t* data, size_t length, uint8_t value) {
             __m256i cmp = _mm256_cmpeq_epi8(chunk, valVec);
             int mask = _mm256_movemask_epi8(cmp);
             if (mask != 0) {
-                return static_cast<int>(i + __builtin_ctz(mask));
+                return static_cast<int>(i + ctz(mask));
             }
         }
     } else if (hasSSE42()) {
@@ -350,7 +356,7 @@ int indexOfFast(const uint8_t* data, size_t length, uint8_t value) {
             __m128i cmp = _mm_cmpeq_epi8(chunk, valVec);
             int mask = _mm_movemask_epi8(cmp);
             if (mask != 0) {
-                return static_cast<int>(i + __builtin_ctz(mask));
+                return static_cast<int>(i + ctz(mask));
             }
         }
     }

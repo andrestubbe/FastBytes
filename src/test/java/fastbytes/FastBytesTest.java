@@ -69,8 +69,8 @@ public class FastBytesTest {
     
     @Test
     public void testXor() {
-        byte[] a = {0x01, 0x02, 0x03, 0x04};
-        byte[] b = {0xFF, 0xFF, 0xFF, 0xFF};
+        byte[] a = {(byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04};
+        byte[] b = {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
         byte[] out = new byte[4];
         
         FastBytes.xor(a, b, out);

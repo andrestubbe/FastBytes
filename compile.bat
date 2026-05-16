@@ -5,6 +5,14 @@ REM FastBytes Native DLL Build Script for Windows
 REM Requires: Visual Studio 2019+ with C++ tools, JDK 17+
 
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+
+if not defined JAVA_HOME (
+    set "JAVA_HOME=C:\Program Files\Java\jdk-25"
+)
+if not exist "%JAVA_HOME%\include\jni.h" (
+    set "JAVA_HOME=C:\Program Files\Java\jdk-25"
+)
+
 set "JNI_INCLUDE=%JAVA_HOME%\include"
 set "JNI_WIN=%JAVA_HOME%\include\win32"
 
