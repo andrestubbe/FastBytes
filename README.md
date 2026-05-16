@@ -29,19 +29,26 @@ FastBytes provides native-first primitives (AVX2/SSE4.2) that bypass standard Ja
 
 ---
 
-## 📊 Performance (Surface Pro 8 Edition)
+## 📊 Performance (v0.1.0 Nitro Edition)
 
-Measured on **Intel Core i7-1185G7 @ 3.00GHz** (AVX2 enabled).
+Measured on **Surface Pro 8** (Intel Core i7-1185G7 @ 3.00GHz, **AVX-512BW** enabled).
 
-| Operation | Buffer Size | Java (Standard) | FastBytes (SIMD) | Speedup |
-|-----------|-------------|-----------------|------------------|---------|
-| **Search**| 100 MB      | 53 ops/s        | **147 ops/s**    | **2.8x**|
-| **XOR**   | 4K Frame    | ~200 FPS        | **772 FPS**      | **3.8x**|
-| **Copy**  | 1 GB        | 4.02 GB/s       | **5.15 GB/s**    | **1.3x**|
-| **Fill**  | 1 GB        | 2.80 GB/s       | **3.68 GB/s**    | **1.3x**|
+| Operation | Buffer Size | Java (Standard) | FastBytes (Nitro) | Speedup |
+|-----------|-------------|-----------------|-------------------|---------|
+| **XOR**   | 4K Frame    | ~52 ms          | **~2 ms**         | **26x** |
+| **Search**| 500 MB      | ~215 ms         | **~30 ms**        | **7.2x**|
+| **Copy**  | 1 GB        | ~170 ms         | **~118 ms**       | **1.4x**|
+| **Fill**  | 1 GB        | ~110 ms         | **~85 ms**        | **1.3x**|
 
-> [!NOTE]
-> For tiny copies (< 1KB), `System.arraycopy` is still recommended due to JNI overhead. FastBytes shines on large buffers (MB/GB) and complex SIMD operations (Search, XOR).
+> [!IMPORTANT]
+> **FastBytes Philosophy**:
+> *"Keine Kopien. Niemals. Kritischer JNI-Pfad. AVX-512, wenn da."*
+> We don't optimize Java code; we bypass it to reach the physical limits of the hardware.
+
+## 🗺️ Roadmap (v0.1.1+)
+- [ ] **Copy**: Implement Kernel-level Fastpaths (`CopyFile2` / `sendfile`).
+- [ ] **Fill**: Implement 3-Way strategy (rep stosq + AVX2 + Streaming).
+- [ ] **Native**: ARM64 / Apple Silicon (NEON) optimization.
 
 
 ---

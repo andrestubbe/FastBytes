@@ -6,7 +6,8 @@ if %ERRORLEVEL% NEQ 0 ( pause & exit /b )
 cd examples
 echo 🚀 Preparing dependencies...
 call mvn -q clean package -DskipTests
+cls
 echo 🚀 Running 1GB Fill Race...
-java -Xmx4G --enable-native-access=ALL-UNNAMED -cp "target/classes;target/lib/*;../target/fastbytes-v0.1.0.jar" fastbytes.FillRace
+java -Xmx4G --enable-native-access=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED -cp "target/classes;target/lib/*;../target/fastbytes-v0.1.0.jar" fastbytes.FillRace
 cd ..
 pause

@@ -1,47 +1,42 @@
 package fastbytes;
 
-import java.util.Random;
-
-/**
- * YouTube Demo 3: Real-Time XOR Visualizer
- * 
- * Simulates a high-frame-rate glitch-art visualizer
- * using SIMD-accelerated XOR operations on 4K frames.
- */
 public class XorRace {
-    public static void main(String[] args) {
-        int size = 1920 * 1080 * 4; // 4K RGBA frame (~8MB)
-        System.out.println("=== Real-Time XOR Visualizer ===");
-        System.out.println("Simulating 60 FPS Glitch-Art Rendering (RGBA 4K)...");
+    public static void main(String[] args) throws Exception {
+        int width = 3840; // 4K
+        int height = 2160;
+        int size = width * height * 4; // RGBA
+        System.out.println("=== 3-WAY XOR Race (20 Iterations) ===");
+        System.out.println("Scenario: 4K RGBA Video Frame Glitch-XOR");
+        System.out.println("Baseline: Java | FastBytes: SIMD");
         
-        byte[] img1 = new byte[size];
-        byte[] img2 = new byte[size];
+        byte[] a = new byte[size];
+        byte[] b = new byte[size];
         byte[] out = new byte[size];
         
-        new Random().nextBytes(img1);
-        new Random().nextBytes(img2);
-
-        int frames = 600; // 10 seconds at 60fps
-        long totalTime = 0;
-
-        System.out.println("Rendering 600 frames...");
-        for (int i = 0; i < frames; i++) {
-            long start = System.nanoTime();
-            FastBytes.xor(img1, img2, out);
-            totalTime += (System.nanoTime() - start);
-            
-            if (i % 60 == 0) {
-                System.out.print(".");
+        for (int i = 1; i <= 20; i++) {
+            // Java
+            long start = System.currentTimeMillis();
+            for (int j = 0; j < size; j++) {
+                out[j] = (byte)(a[j] ^ b[j]);
             }
+            long javaTime = System.currentTimeMillis() - start;
+            
+            // FastBytes SIMD
+            start = System.currentTimeMillis();
+            FastBytes.xor(a, b, out);
+            long fastTime = System.currentTimeMillis() - start;
+
+            double fps = 1000.0 / Math.max(1, fastTime);
+            double ratio = (double)javaTime / Math.max(1, fastTime);
+            
+            System.out.printf("Iter %2d | Java: %3d ms | FastBytes: %3d ms | Speedup: %.1fx | Est: %.0f FPS %s\n", 
+                i, javaTime, fastTime, ratio, fps, (ratio >= 1.0 ? "🚀" : "🐢"));
+            
+            Thread.sleep(50);
         }
-
-        double avgTimeMs = (totalTime / (double)frames) / 1_000_000.0;
-        double fps = 1000.0 / avgTimeMs;
-
-        System.out.println("\n\n----------------------------------------");
-        System.out.printf("Average Frame Time: %.3f ms\n", avgTimeMs);
-        System.out.printf("Theoretical Max Performance: %.0f FPS\n", fps);
+        
+        System.out.println("\n----------------------------------------");
+        System.out.println("XOR Race Complete. SIMD kills the bandwidth wall.");
         System.out.println("----------------------------------------");
-        System.out.println("Proving that SIMD throughput is over-kill for 4K video.");
     }
 }
