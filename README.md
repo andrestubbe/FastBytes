@@ -73,10 +73,10 @@ See the full **[ROADMAP.md](./ROADMAP.md)** for details.
 
 ## Installation
 
-FastJava modules require **two** dependencies: the module itself, and `FastCore` (which handles the native library extraction).
+### Option 1: Maven (Recommended)
+Add the JitPack repository and the dependencies to your `pom.xml`:
 
-### Maven (JitPack)
-```xml
+`xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -85,41 +85,42 @@ FastJava modules require **two** dependencies: the module itself, and `FastCore`
 </repositories>
 
 <dependencies>
+    <!-- FastBytes Library -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastbytes</artifactId>
         <version>v0.1.0</version>
     </dependency>
+    <!-- FastCore (Required Native Loader) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastcore</artifactId>
         <version>v0.1.0</version>
     </dependency>
 </dependencies>
-```
+`
 
-### Gradle (JitPack)
-```gradle
+### Option 2: Gradle (via JitPack)
+`groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    implementation 'com.github.andrestubbe:fastbytes:v0.1.0'
+    implementation 'com.github.andrestubbe:.1.0'
     implementation 'com.github.andrestubbe:fastcore:v0.1.0'
 }
-```
+`
 
-### Direct Download (No Build Tool)
+### Option 3: Direct Download (No Build Tool)
 Download the latest JARs directly to add them to your classpath:
 
-1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases)** (The Core Library)
-2. ⚙️ **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases)** (The Mandatory Native Loader)
+1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/v0.1.0/fastbytes-v0.1.0.jar)** (The Core Library)
+2. ⚙️ **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/v0.1.0/fastcore-v0.1.0.jar)** (The Mandatory Native Loader)
 
 > [!IMPORTANT]
-> Both JARs must be in your classpath for the native JNI calls to function correctly.
+> All JARs must be in your classpath for the native JNI calls to function correctly.
 
----
 
 ## Technical Examples & Hero Demos
 See the `examples/` directory for technical implementations and high-speed races:
