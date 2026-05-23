@@ -1,5 +1,4 @@
-# FastBytes — High-performance SIMD-powered byte engine for Java
-
+# FastBytes — High-performance SIMD-powered byte engine for Java [ALPHA] - v0.1.0
 **High-performance SIMD-powered byte manipulation engine for the JVM.**
 
 [![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastBytes/maven.yml?branch=main)](https://github.com/andrestubbe/FastBytes/actions)
@@ -167,3 +166,4 @@ FastBytes works best when combined with other **FastJava** accelerators:
 **Part of the FastJava Ecosystem** — *Making the JVM faster.*
 
 Made with ⚡ by Andre Stubbe
+
