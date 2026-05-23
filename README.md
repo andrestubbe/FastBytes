@@ -1,12 +1,6 @@
 ﻿# FastBytes — High-performance SIMD-powered byte engine for Java [ALPHA] - v0.1.0
 **High-performance SIMD-powered byte manipulation engine for the JVM.**
 
-[![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastBytes/maven.yml?branch=main)](https://github.com/andrestubbe/FastBytes/actions)
-[![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![JitPack](https://jitpack.io/v/andrestubbe/FastBytes.svg)](https://jitpack.io/#andrestubbe/FastBytes)
-
 FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard Java APIs reach their physical limits.
 
 ```java
@@ -14,6 +8,12 @@ FastBytes is the high-performance substrate of the **FastJava** ecosystem. It pr
 byte[] data = ...; // 500MB buffer
 int index = FastBytes.indexOf(data, (byte)0x42); 
 ```
+
+[![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastBytes/releases/tag/v0.1.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
+[![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
 ## Table of Contents
 - [Key Features](#key-features)
