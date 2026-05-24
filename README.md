@@ -1,28 +1,24 @@
 ﻿# FastBytes v0.1.0 [ALPHA] — High-performance SIMD-powered byte engine for Java
 
-
 [![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastBytes/releases/tag/v0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
 [![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
-**High-performance SIMD-powered byte manipulation engine for the JVM.**
+**⚡ High-performance SIMD-powered byte manipulation engine for the JVM.**
 
 FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (
 AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard
 Java APIs reach their physical limits.
 
-
 [![FastFileIndex Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
-
 
 ```java
 // Quick Start — SIMD Search
 byte[] data = ...; // 500MB buffer
 int index = FastBytes.indexOf(data, (byte) 0x42); 
 ```
-
 
 ## Table of Contents
 
@@ -156,19 +152,20 @@ See the `examples/` directory for technical implementations and high-speed races
 
 ## Documentation
 
-* **[REFERENCE.md](REFERENCE.md)**: Full technical specification, CPU fallback rules, and JNI contracts.
-* **[PHILOSOPHIE.md](PHILOSOPHIE.md)**: The "Native-First" philosophy behind the FastJava ecosystem.
-* **[CHANGELOG.md](CHANGELOG.md)**: Project history.
+* **[COMPILE.md](COMPILE.md)**: Full compilation guide (MSVC C++17 build chain + JNI Setup).
+* **[REFERENCE.md](REFERENCE.md)**: Full API descriptions, border configurations, and codepoint index.
+* **[PHILOSOPHIE.md](PHILOSOPHIE.md)**: The engineering rationale for zero-allocation performance.
+* **[ROADMAP.md](ROADMAP.md)**: Future milestones and planned features.
 
 ---
 
 ## Platform Support
 
-| Platform            | Status            |
-|---------------------|-------------------|
-| Windows 10/11 (x64) | ✅ Fully Supported |
-| Linux               | 🚧 Planned        |
-| macOS               | 🚧 Planned        |
+| Platform      | Status            |
+|---------------|-------------------|
+| Windows 10/11 | ✅ Fully Supported |
+| Linux         | 🚧 Planned        |
+| macOS         | 🚧 Planned        |
 
 ---
 
@@ -178,18 +175,16 @@ MIT License — See [LICENSE](LICENSE) file for details.
 
 ---
 
-## Modular Ecosystem
+## Related Projects
 
-FastBytes works best when combined with other **FastJava** accelerators:
-
-* [**FastCore**](https://github.com/andrestubbe/FastCore) — Native library loader.
-* [**FastIO**](https://github.com/andrestubbe/FastIO) — High-performance file streaming.
-* [**FastJSON**](https://github.com/andrestubbe/FastJSON) — SIMD-powered JSON parsing.
+- [FastFileIndex](https://github.com/andrestubbe/FastFileIndex) - Binary file indexing with mmap support
+- [FastFileSearch](https://github.com/andrestubbe/FastFileSearch) - Prefix Trie, N-Gram index, and Ranking engine
+- [FastFileWatch](https://github.com/andrestubbe/FastFileWatch) - USN Journal-based live file monitoring
+- [FastCore](https://github.com/andrestubbe/FastCore) - Unified JNI loader and platform abstraction
 
 ---
 
-**Part of the FastJava Ecosystem** — *Making the JVM faster.*
+**Part of the FastJava Ecosystem** — *Making the JVM faster. Small package. Maximum speed. Zero bloat. 🚀📋*
 
-Made with ⚡ by Andre Stubbe
 
 
