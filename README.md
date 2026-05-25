@@ -6,11 +6,15 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
 [![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
+---
+
 **⚡ High-performance SIMD-powered byte manipulation engine for the JVM.**
 
 FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (
 AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard
 Java APIs reach their physical limits.
+
+---
 
 [![FastFileIndex Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
 
