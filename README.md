@@ -14,11 +14,7 @@ Java APIs reach their physical limits.
 
 [![FastFileIndex Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
 
-```java
-// Quick Start — SIMD Search
-byte[] data = ...; // 500MB buffer
-int index = FastBytes.indexOf(data, (byte) 0x42); 
-```
+---
 
 ## Table of Contents
 
@@ -30,6 +26,14 @@ int index = FastBytes.indexOf(data, (byte) 0x42);
 - [Documentation](#documentation)
 - [Platform Support](#platform-support)
 - [License](#license)
+
+---
+
+```java
+// Quick Start — SIMD Search
+byte[] data = ...; // 500MB buffer
+int index = FastBytes.indexOf(data, (byte) 0x42); 
+```
 
 ---
 
