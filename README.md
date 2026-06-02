@@ -61,7 +61,7 @@ Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 | **Copy**   | 1 GB        | ~170 ms         | **~118 ms**        | **1.4x** |
 | **Fill**   | 1 GB        | ~110 ms         | **~85 ms**         | **1.3x** |
 
-> Read the full manifest in **[PHILOSOPHIE.md](./PHILOSOPHIE.md)**.
+> Read the full manifest in **[PHILOSOPHIE.md](docs/PHILOSOPHIE.md)**.
 
 ## 🗺️ Next Steps
 
@@ -69,7 +69,7 @@ Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 - [ ] **3-Way Fill**: Hardware-optimized memory zeroing.
 - [ ] **Apple Silicon**: Native NEON port for ARM64.
 
-See the full **[ROADMAP.md](./ROADMAP.md)** for details.
+See the full **[ROADMAP.md](docs/ROADMAP.md)** for details.
 
 
 ---
@@ -78,14 +78,14 @@ See the full **[ROADMAP.md](./ROADMAP.md)** for details.
 
 | Method           | Description                                     | Path                               |
 |------------------|-------------------------------------------------|------------------------------------|
-| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference →](REFERENCE.md#copy)   |
-| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference →](REFERENCE.md#search) |
-| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference →](REFERENCE.md#xor)    |
-| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference →](REFERENCE.md#fill)   |
-| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference →](REFERENCE.md#hash)   |
+| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference →](docs/REFERENCE.md#copy)   |
+| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference →](docs/REFERENCE.md#search) |
+| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference →](docs/REFERENCE.md#xor)    |
+| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference →](docs/REFERENCE.md#fill)   |
+| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference →](docs/REFERENCE.md#hash)   |
 
 > [!TIP]
-> See **[REFERENCE.md](REFERENCE.md)** for full JNI contracts and fallback rules.
+> See **[REFERENCE.md](docs/REFERENCE.md)** for full JNI contracts and fallback rules.
 
 ## Installation
 
@@ -160,10 +160,10 @@ See the `examples/` directory for technical implementations and high-speed races
 
 ## Documentation
 
-* **[COMPILE.md](COMPILE.md)**: Full compilation guide (MSVC C++17 build chain + JNI Setup).
-* **[REFERENCE.md](REFERENCE.md)**: Full API descriptions, border configurations, and codepoint index.
-* **[PHILOSOPHIE.md](PHILOSOPHIE.md)**: The engineering rationale for zero-allocation performance.
-* **[ROADMAP.md](ROADMAP.md)**: Future milestones and planned features.
+* **[COMPILE.md](docs/COMPILE.md)**: Full compilation guide (MSVC C++17 build chain + JNI Setup).
+* **[REFERENCE.md](docs/REFERENCE.md)**: Full API descriptions, border configurations, and codepoint index.
+* **[PHILOSOPHIE.md](docs/PHILOSOPHIE.md)**: The engineering rationale for zero-allocation performance.
+* **[ROADMAP.md](docs/ROADMAP.md)**: Future milestones and planned features.
 
 ---
 
