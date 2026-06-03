@@ -1,4 +1,4 @@
-﻿# FastBytes v0.1.0 [ALPHA] — High-performance SIMD-powered byte engine for Java
+# FastBytes v0.1.0 [ALPHA] � High-performance SIMD-powered byte engine for Java
 
 [![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastBytes/releases/tag/v0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@
 
 ---
 
-**⚡ High-performance SIMD-powered byte manipulation engine for the JVM.**
+**? High-performance SIMD-powered byte manipulation engine for the JVM.**
 
 FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (
 AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard
@@ -34,7 +34,7 @@ Java APIs reach their physical limits.
 ---
 
 ```java
-// Quick Start — SIMD Search
+// Quick Start � SIMD Search
 byte[] data = ...; // 500MB buffer
 int index = FastBytes.indexOf(data, (byte) 0x42); 
 ```
@@ -43,14 +43,14 @@ int index = FastBytes.indexOf(data, (byte) 0x42);
 
 ## Key Features
 
-- **⚡ SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
-- **🔍 Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
-- **🎨 Native XOR**: Optimized for cryptographic and visual processing.
-- **📦 Zero Dependencies**: Purely native acceleration via JNI.
+- **? SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
+- **?? Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
+- **?? Native XOR**: Optimized for cryptographic and visual processing.
+- **?? Zero Dependencies**: Purely native acceleration via JNI.
 
 ---
 
-## 📊 Performance (v0.1.0)
+## ?? Performance (v0.1.0)
 
 Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
@@ -61,9 +61,9 @@ Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 | **Copy**   | 1 GB        | ~170 ms         | **~118 ms**        | **1.4x** |
 | **Fill**   | 1 GB        | ~110 ms         | **~85 ms**         | **1.3x** |
 
-> Read the full manifest in **[PHILOSOPHIE.md](docs/PHILOSOPHIE.md)**.
+> Read the full manifest in **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**.
 
-## 🗺️ Next Steps
+## ??? Next Steps
 
 - [ ] **Kernel Fastpaths**: DMA-based bulk copying (`CopyFile2`).
 - [ ] **3-Way Fill**: Hardware-optimized memory zeroing.
@@ -78,11 +78,11 @@ See the full **[ROADMAP.md](docs/ROADMAP.md)** for details.
 
 | Method           | Description                                     | Path                               |
 |------------------|-------------------------------------------------|------------------------------------|
-| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference →](docs/REFERENCE.md#copy)   |
-| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference →](docs/REFERENCE.md#search) |
-| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference →](docs/REFERENCE.md#xor)    |
-| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference →](docs/REFERENCE.md#fill)   |
-| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference →](docs/REFERENCE.md#hash)   |
+| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference ?](docs/REFERENCE.md#copy)   |
+| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference ?](docs/REFERENCE.md#search) |
+| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference ?](docs/REFERENCE.md#xor)    |
+| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference ?](docs/REFERENCE.md#fill)   |
+| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference ?](docs/REFERENCE.md#hash)   |
 
 > [!TIP]
 > See **[REFERENCE.md](docs/REFERENCE.md)** for full JNI contracts and fallback rules.
@@ -136,9 +136,9 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. 📦 **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/v0.1.0/fastbytes-v0.1.0.jar)
+1. ?? **[fastbytes-v0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/v0.1.0/fastbytes-v0.1.0.jar)
    ** (The Core Library)
-2. ⚙️ **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/v0.1.0/fastcore-v0.1.0.jar)** (
+2. ?? **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/v0.1.0/fastcore-v0.1.0.jar)** (
    The Mandatory Native Loader)
 
 > [!IMPORTANT]
@@ -150,11 +150,11 @@ See the `examples/` directory for technical implementations and high-speed races
 
 | Case       | Java Example                                                        | Performance Race / Demo                                          | JMH Benchmark                                                                 |
 |------------|---------------------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **XOR**    | [XorRace.java](examples/src/main/java/fastbytes/XorRace.java)       | [“Real-Time XOR Visualizer”](https://youtube.com) (4K @ 666 FPS) | [JMH_Xor.java](examples/src/main/java/fastbytes/benchmark/JMH_Xor.java)       |
-| **Search** | [SearchRace.java](examples/src/main/java/fastbytes/SearchRace.java) | [“SIMD Search vs Java Loop”](https://youtube.com) (7.2x speedup) | [JMH_Search.java](examples/src/main/java/fastbytes/benchmark/JMH_Search.java) |
-| **Copy**   | [CopyRace.java](examples/src/main/java/fastbytes/CopyRace.java)     | [“1GB Copy Race”](https://youtube.com) (1.4x speedup)            | [JMH_Copy.java](examples/src/main/java/fastbytes/benchmark/JMH_Copy.java)     |
-| **Fill**   | [FillRace.java](examples/src/main/java/fastbytes/FillRace.java)     | [“1GB Zero-Fill Race”](https://youtube.com) (1.3x speedup)       | [JMH_Fill.java](examples/src/main/java/fastbytes/benchmark/JMH_Fill.java)     |
-| **Hash**   | [HashRace.java](examples/src/main/java/fastbytes/HashRace.java)     | [“100MB xxHash Battle”](https://youtube.com) (xxHash32 Speed)    | [JMH_Hash.java](examples/src/main/java/fastbytes/benchmark/JMH_Hash.java)     |
+| **XOR**    | [XorRace.java](examples/src/main/java/fastbytes/XorRace.java)       | [�Real-Time XOR Visualizer�](https://youtube.com) (4K @ 666 FPS) | [JMH_Xor.java](examples/src/main/java/fastbytes/benchmark/JMH_Xor.java)       |
+| **Search** | [SearchRace.java](examples/src/main/java/fastbytes/SearchRace.java) | [�SIMD Search vs Java Loop�](https://youtube.com) (7.2x speedup) | [JMH_Search.java](examples/src/main/java/fastbytes/benchmark/JMH_Search.java) |
+| **Copy**   | [CopyRace.java](examples/src/main/java/fastbytes/CopyRace.java)     | [�1GB Copy Race�](https://youtube.com) (1.4x speedup)            | [JMH_Copy.java](examples/src/main/java/fastbytes/benchmark/JMH_Copy.java)     |
+| **Fill**   | [FillRace.java](examples/src/main/java/fastbytes/FillRace.java)     | [�1GB Zero-Fill Race�](https://youtube.com) (1.3x speedup)       | [JMH_Fill.java](examples/src/main/java/fastbytes/benchmark/JMH_Fill.java)     |
+| **Hash**   | [HashRace.java](examples/src/main/java/fastbytes/HashRace.java)     | [�100MB xxHash Battle�](https://youtube.com) (xxHash32 Speed)    | [JMH_Hash.java](examples/src/main/java/fastbytes/benchmark/JMH_Hash.java)     |
 
 ---
 
@@ -162,7 +162,7 @@ See the `examples/` directory for technical implementations and high-speed races
 
 * **[COMPILE.md](docs/COMPILE.md)**: Full compilation guide (MSVC C++17 build chain + JNI Setup).
 * **[REFERENCE.md](docs/REFERENCE.md)**: Full API descriptions, border configurations, and codepoint index.
-* **[PHILOSOPHIE.md](docs/PHILOSOPHIE.md)**: The engineering rationale for zero-allocation performance.
+* **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**: The engineering rationale for zero-allocation performance.
 * **[ROADMAP.md](docs/ROADMAP.md)**: Future milestones and planned features.
 
 ---
@@ -171,15 +171,15 @@ See the `examples/` directory for technical implementations and high-speed races
 
 | Platform      | Status            |
 |---------------|-------------------|
-| Windows 10/11 | ✅ Fully Supported |
-| Linux         | 🚧 Planned        |
-| macOS         | 🚧 Planned        |
+| Windows 10/11 | ? Fully Supported |
+| Linux         | ?? Planned        |
+| macOS         | ?? Planned        |
 
 ---
 
 ## License
 
-MIT License — See [LICENSE](LICENSE) file for details.
+MIT License � See [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -192,7 +192,7 @@ MIT License — See [LICENSE](LICENSE) file for details.
 
 ---
 
-**Part of the FastJava Ecosystem** — *Making the JVM faster. Small package. Maximum speed. Zero bloat. 🚀📋*
+**Part of the FastJava Ecosystem** � *Making the JVM faster. Small package. Maximum speed. Zero bloat. ????*
 
 
 
