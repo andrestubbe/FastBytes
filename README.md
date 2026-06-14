@@ -4,11 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
-[![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe/FastAudioPlayer)
+[![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
 ---
 
-**âš¡ High-performance SIMD-powered byte manipulation engine for the JVM.**
+**⚡ High-performance SIMD-powered byte manipulation engine for the JVM.**
 
 FastBytes is the high-performance substrate of the **FastJava** ecosystem. It provides the hand-tuned SIMD primitives (
 AVX-512, AVX2) required for real-time data processing, visual computing, and agentic memory manipulation where standard
@@ -43,14 +43,14 @@ int index = FastBytes.indexOf(data, (byte) 0x42);
 
 ## Key Features
 
-- **? SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
-- **ðŸš€ Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
-- **ðŸš€ Native XOR**: Optimized for cryptographic and visual processing.
-- **ðŸš€ Zero Dependencies**: Purely native acceleration via JNI.
+- **⏱️ SIMD Copy**: Up to 10x faster than `System.arraycopy` for large blocks.
+- **🔍 Vector Search**: Scans 32-64 bytes per cycle using hardware intrinsics.
+- **⚙️ Native XOR**: Optimized for cryptographic and visual processing.
+- **📦 Zero Dependencies**: Purely native acceleration via JNI.
 
 ---
 
-## ðŸš€ Performance (0.1.0)
+## 📊 Performance (0.1.0)
 
 Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
@@ -63,7 +63,7 @@ Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
 > Read the full manifest in **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**.
 
-## ðŸš€? Next Steps
+## 📅 Next Steps
 
 - [ ] **Kernel Fastpaths**: DMA-based bulk copying (`CopyFile2`).
 - [ ] **3-Way Fill**: Hardware-optimized memory zeroing.
@@ -78,11 +78,11 @@ See the full **[ROADMAP.md](docs/ROADMAP.md)** for details.
 
 | Method           | Description                                     | Path                               |
 |------------------|-------------------------------------------------|------------------------------------|
-| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference ?](docs/REFERENCE.md#copy)   |
-| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference ?](docs/REFERENCE.md#search) |
-| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference ?](docs/REFERENCE.md#xor)    |
-| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference ?](docs/REFERENCE.md#fill)   |
-| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference ?](docs/REFERENCE.md#hash)   |
+| `copy(...)`      | High-speed memory migration (64-byte unrolled). | [Reference 📖](docs/REFERENCE.md#copy)   |
+| `indexOf(...)`   | AVX-512 accelerated byte scanner.               | [Reference 📖](docs/REFERENCE.md#search) |
+| `xor(...)`       | 128-byte vector XOR engine (Visual/Crypto).     | [Reference 📖](docs/REFERENCE.md#xor)    |
+| `fill(...)`      | Rapid buffer zeroing/initialization.            | [Reference 📖](docs/REFERENCE.md#fill)   |
+| `hashXXH32(...)` | SIMD-ready xxHash implementation.               | [Reference 📖](docs/REFERENCE.md#hash)   |
 
 > [!TIP]
 > See **[REFERENCE.md](docs/REFERENCE.md)** for full JNI contracts and fallback rules.
@@ -136,10 +136,8 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. ðŸš€ **[fastbytes-0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/0.1.0/fastbytes-0.1.0.jar)
-   ** (The Core Library)
-2. ðŸš€ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (
-   The Mandatory Native Loader)
+1. 📦 **[fastbytes-0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/0.1.0/fastbytes-0.1.0.jar)** (The Core Library)
+2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
 
 > [!IMPORTANT]
 > All JARs must be in your classpath for the native JNI calls to function correctly.
@@ -171,9 +169,9 @@ See the `examples/` directory for technical implementations and high-speed races
 
 | Platform      | Status            |
 |---------------|-------------------|
-| Windows 10/11 | ? Fully Supported |
-| Linux         | ðŸš€ Planned        |
-| macOS         | ðŸš€ Planned        |
+| Windows 10/11 | ✅ Fully Supported |
+| Linux         | 🔗 Planned        |
+| macOS         | 🔗 Planned        |
 
 ---
 
@@ -192,7 +190,7 @@ MIT License  See [LICENSE](LICENSE) file for details.
 
 ---
 
-**Part of the FastJava Ecosystem**  *Making the JVM faster. Small package. Maximum speed. Zero bloat. ðŸš€ðŸš€*
+**Part of the FastJava Ecosystem** — *Making the JVM faster. Small package. Maximum speed. Zero bloat. 🚀📋*
 
 
 
