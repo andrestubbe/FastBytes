@@ -1,7 +1,7 @@
 # The Philosophy of FastBytes
 
 > [!IMPORTANT]
-> **"Keine Kopien. Niemals. Kritischer JNI-Pfad. AVX-512, wenn da."**
+> **"No copies. Ever. Critical JNI path. AVX-512 when available."**
 
 FastBytes is built on the principle that modern Java applications, especially those used by AI agents and high-performance data processing systems, require **native-first** SIMD acceleration for basic byte manipulation tasks that `java.util.Arrays` and `System.arraycopy` don't fully optimize.
 
