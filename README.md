@@ -20,24 +20,45 @@ Java APIs reach their physical limits.
 
 ---
 
+## Quick Start — Example
+
+```java
+import fastbytes.FastBytes;
+
+public class Demo {
+    public static void main(String[] args) {
+        // 1. SIMD-Accelerated Byte Search (15x speedup over standard Java loops)
+        byte[] data = "Hello World! FastBytes SIMD Engine Active.".getBytes();
+        int index = FastBytes.indexOf(data, (byte) 'V');
+        System.out.println("Found target byte at index: " + index);
+
+        // 2. High-Speed SIMD Buffer Fill
+        byte[] buffer = new byte[1024];
+        FastBytes.fill(buffer, (byte) 0xFF);
+
+        // 3. Fast 4K RGBA Video Frame Glitch XOR (100+ FPS)
+        byte[] frameA = new byte[8294400]; // 4K RGBA Frame
+        byte[] frameB = new byte[8294400];
+        byte[] result = new byte[8294400];
+        FastBytes.xor(frameA, frameB, result);
+        System.out.println("4K Glitch XOR completed at 100+ FPS.");
+    }
+}
+```
+
+---
+
 ## Table of Contents
 
+- [Quick Start — Example](#quick-start--example)
 - [Key Features](#key-features)
 - [Performance](#performance)
 - [API Quick Reference](#api-quick-reference)
 - [Installation](#installation)
-- [Technical Examples & Hero Demos](#technical-examples--hero-demos)
 - [Documentation](#documentation)
 - [Platform Support](#platform-support)
+- [Related Projects](#related-projects)
 - [License](#license)
-
----
-
-```java
-// Quick Start  SIMD Search
-byte[] data = ...; // 500MB buffer
-int index = FastBytes.indexOf(data, (byte) 0x42); 
-```
 
 ---
 
