@@ -63,15 +63,6 @@ Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
 > Read the full manifest in **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**.
 
-## 📅 Next Steps
-
-- [ ] **Kernel Fastpaths**: DMA-based bulk copying (`CopyFile2`).
-- [ ] **3-Way Fill**: Hardware-optimized memory zeroing.
-- [ ] **Apple Silicon**: Native NEON port for ARM64.
-
-See the full **[ROADMAP.md](docs/ROADMAP.md)** for details.
-
-
 ---
 
 ## API Quick Reference
