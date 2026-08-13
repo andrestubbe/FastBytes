@@ -1,9 +1,8 @@
-﻿@echo off
+@echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-echo [FastBytes] Running Race Benchmark...
+echo [FastBytes] Running Fill Race Benchmark...
 cd examples
 set MAVEN_OPTS=-Xmx4G
-call mvn compile exec:java -Dexec.mainClass=fastbytes.benchmark.JMH_Copy
-cd ..\..
-pause
+call mvn compile exec:java -Dexec.mainClass=fastbytes.FillRace
+cd ..

@@ -7,10 +7,10 @@ REM Requires: Visual Studio 2019+ with C++ tools, JDK 17+
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 if not defined JAVA_HOME (
-    set "JAVA_HOME=C:\Program Files\Java\jdk-25"
+    set "JAVA_HOME=C:\Program Files\Java\jdk-21.0.12"
 )
 if not exist "%JAVA_HOME%\include\jni.h" (
-    set "JAVA_HOME=C:\Program Files\Java\jdk-25"
+    set "JAVA_HOME=C:\Program Files\Java\jdk-21.0.12"
 )
 
 set "JNI_INCLUDE=%JAVA_HOME%\include"
@@ -46,7 +46,7 @@ if not exist build mkdir build
 REM Compile with AVX2 and SSE4.2 support
 echo Compiling FastBytes DLL...
 cl.exe /O2 /arch:AVX2 /EHsc /MD /LD /W3 /nologo ^
-    /I"%JNI_INCLUDE%" /I"%JNI_WIN%" ^
+    /I"%JNI_INCLUDE%" /I"%JNI_WIN%" /I"..\FastSIMD\native" ^
     native\fastbytes.cpp ^
     /Fobuild\fastbytes.obj ^
     /Febuild\fastbytes.dll ^

@@ -1,4 +1,5 @@
 #include "fastbytes.h"
+#include "fastsimd.h"
 #include <cstring>
 #include <algorithm>
 #include <immintrin.h>
@@ -45,14 +46,11 @@ bool hasAVX512BW() { if (!g_initialized) initCpuFeatures(); return g_avx512f && 
 // --- CORE ALGORITHMS ---
 
 void copyFast_Legacy(const uint8_t* src, uint8_t* dest, size_t length) {
-    size_t i = 0;
     if (hasAVX2()) {
-        for (; i + 31 < length; i += 32) {
-            __m256i data = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(src + i));
-            _mm256_storeu_si256(reinterpret_cast<__m256i*>(dest + i), data);
-        }
+        FastSIMD_Copy256(src, dest, length);
+        return;
     }
-    for (; i < length; i++) dest[i] = src[i];
+    for (size_t i = 0; i < length; i++) dest[i] = src[i];
 }
 
 void copyFast_Pro(const uint8_t* src, uint8_t* dest, size_t length) {
@@ -93,25 +91,10 @@ void fillFast_Pro(uint8_t* dest, uint8_t value, size_t length) {
 }
 
 int indexOfFast_Legacy(const uint8_t* data, size_t length, uint8_t target) {
-    size_t i = 0;
     if (hasAVX2()) {
-        __m256i targetVec = _mm256_set1_epi8(static_cast<char>(target));
-        for (; i + 31 < length; i += 32) {
-            __m256i chunk = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(data + i));
-            __m256i cmp = _mm256_cmpeq_epi8(chunk, targetVec);
-            int mask = _mm256_movemask_epi8(cmp);
-            if (mask != 0) {
-                unsigned long bitPos;
-#ifdef _MSC_VER
-                _BitScanForward(&bitPos, mask);
-#else
-                bitPos = __builtin_ctz(mask);
-#endif
-                return static_cast<int>(i + bitPos);
-            }
-        }
+        return static_cast<int>(FastSIMD_FindByte(data, length, target));
     }
-    for (; i < length; i++) if (data[i] == target) return static_cast<int>(i);
+    for (size_t i = 0; i < length; i++) if (data[i] == target) return static_cast<int>(i);
     return -1;
 }
 
