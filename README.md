@@ -16,7 +16,7 @@ Java APIs reach their physical limits.
 
 ---
 
-[![FastBytes Showcase](docs/screenshot.png)](https://youtu.be/X8Kv49nL9co)
+[![FastBytes SIMD Performance Showcase](docs/screenshot.png)](https://youtu.be/X8Kv49nL9co)
 
 ---
 
