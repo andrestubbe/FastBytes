@@ -1,6 +1,6 @@
-# FastBytes 0.1.0 [ALPHA-2026-05-17] — High-performance SIMD-powered byte engine for Java
+# FastBytes 0.1.1 [ALPHA-2026-08-13] — High-performance SIMD-powered byte engine for Java
 
-[![Status](https://img.shields.io/badge/status-0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastBytes/releases/tag/0.1.0)
+[![Status](https://img.shields.io/badge/status-0.1.1-brightgreen.svg)](https://github.com/andrestubbe/FastBytes/releases/tag/0.1.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
@@ -50,11 +50,11 @@ int index = FastBytes.indexOf(data, (byte) 0x42);
 
 ---
 
-## 📊 Performance (0.1.0)
+## 📊 Performance (0.1.1)
 
 Measured on **Modern x64 Hardware** (**AVX-512BW** enabled).
 
-| Operation  | Buffer Size | Java (Standard) | FastBytes (0.1.0) | Speedup  |
+| Operation  | Buffer Size | Java (Standard) | FastBytes (0.1.1) | Speedup  |
 |------------|-------------|-----------------|--------------------|----------|
 | **XOR**    | 4K Frame    | ~52 ms          | **~2 ms**          | **26x**  |
 | **Search** | 500 MB      | ~215 ms         | **~30 ms**         | **7.2x** |
@@ -98,21 +98,21 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastBytes</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
     </dependency>
 
     <!-- FastSIMD Hardware Vector Engine -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastSIMD</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
     </dependency>
 
     <!-- FastCore (Required Native Loader) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastCore</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
     </dependency>
 </dependencies>
 ```
@@ -125,9 +125,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.andrestubbe:FastBytes:0.1.0'
-    implementation 'com.github.andrestubbe:FastSIMD:0.1.0'
-    implementation 'com.github.andrestubbe:FastCore:0.1.0'
+    implementation 'com.github.andrestubbe:FastBytes:0.1.1'
+    implementation 'com.github.andrestubbe:FastSIMD:0.1.1'
+    implementation 'com.github.andrestubbe:FastCore:0.1.1'
 }
 ```
 
@@ -135,9 +135,9 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. 📦 **[FastBytes-0.1.0.jar](https://github.com/andrestubbe/FastBytes/releases/download/0.1.0/FastBytes-0.1.0.jar)** (The Core Library)
-2. ⚡ **[FastSIMD-0.1.0.jar](https://github.com/andrestubbe/FastSIMD/releases/download/0.1.0/FastSIMD-0.1.0.jar)** (Hardware Vector Engine)
-3. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
+1. 📦 **[FastBytes-0.1.1.jar](https://github.com/andrestubbe/FastBytes/releases/download/0.1.1/FastBytes-0.1.1.jar)** (The Core Library)
+2. ⚡ **[FastSIMD-0.1.1.jar](https://github.com/andrestubbe/FastSIMD/releases/download/0.1.1/FastSIMD-0.1.1.jar)** (Hardware Vector Engine)
+3. ⚙️ **[fastcore-0.1.1.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.1/fastcore-0.1.1.jar)** (The Mandatory Native Loader)
 
 > [!IMPORTANT]
 > All JARs must be in your classpath for the native JNI calls to function correctly.
