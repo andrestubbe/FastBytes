@@ -183,6 +183,23 @@ Download the latest JARs directly to add them to your classpath:
 
 ---
 
+## Technical Examples & Benchmarks
+
+See the `examples/Benchmark` directory for technical implementations and official JMH benchmarks:
+
+| Benchmark Case | Description | Java Example | JMH Benchmark |
+|---|---|---|---|
+| **SIMD Search** | 3-Way Search (SIMD vs Prefetching vs Java) | [SearchRace.java](examples/Benchmark/src/main/java/fastbytes/SearchRace.java) | [JMH_Search.java](examples/Benchmark/src/main/java/fastbytes/benchmark/JMH_Search.java) |
+| **XOR Glitch** | 4K RGBA Video Frame XOR | [XorRace.java](examples/Benchmark/src/main/java/fastbytes/XorRace.java) | [JMH_Xor.java](examples/Benchmark/src/main/java/fastbytes/benchmark/JMH_Xor.java) |
+| **Bulk Copy** | Off-Heap Aligned Copy vs System.arraycopy | [CopyRace.java](examples/Benchmark/src/main/java/fastbytes/CopyRace.java) | [JMH_Copy.java](examples/Benchmark/src/main/java/fastbytes/benchmark/JMH_Copy.java) |
+
+### Run JMH Benchmarks via Script
+```cmd
+run-benchmark.bat
+```
+
+---
+
 ## Documentation
 
 * **[COMPILE.md](docs/COMPILE.md)**: Full compilation guide (MSVC C++17 build chain + JNI Setup).

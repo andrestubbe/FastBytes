@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>com.github.andrestubbe</groupId>
-            <artifactId>fastbytes-examples</artifactId>
-            <version>v0.1.0</version>
+    <artifactId>fastbytes-benchmark</artifactId>
+    <version>0.1.1</version>
     
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
