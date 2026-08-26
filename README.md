@@ -20,7 +20,7 @@ Java APIs reach their physical limits.
 
 ---
 
-## Quick Start — Example
+## Quick Start
 
 ```java
 import fastbytes.FastBytes;
@@ -55,7 +55,7 @@ public class Demo {
 - [Real-World Use Cases](#real-world-use-cases)
 - [Performance Benchmarks](#performance-benchmarks)
 - [FastJava Native Memory Substrate](#fastjava-native-memory--hardware-substrate)
-- [Quick Start — Example](#quick-start--example)
+- [Quick Start](#quick-start)
 - [API Quick Reference](#api-quick-reference)
 - [Installation](#installation)
 - [Documentation](#documentation)
